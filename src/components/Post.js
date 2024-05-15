@@ -1,20 +1,29 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import axios from "axios";
 
 const Post = () => {
   const { post_id } = useParams();
-  const [id, setId] = useState(null);
+  const [post, setPost] = useState(null);
 
   useEffect(() => {
-    console.log(post_id);
-    setId(post_id);
+    axios
+      .get("https://jsonplaceholder.typicode.com/posts/" + post_id)
+      .then((res) => {
+        setPost(res.data);
+        console.log(res);
+      });
   }, [post_id]);
 
-  return (
-    <div className="container">
-      <h4>{id}</h4>
+  const postView = post ? (
+    <div className="post">
+      <div className="center">{post.title}</div>
+      <p>{post.body}</p>
     </div>
+  ) : (
+    <div className="center">Loading post...</div>
   );
+  return <div className="container">{postView}</div>;
 };
 
 export default Post;
