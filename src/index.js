@@ -7,7 +7,9 @@ import { configureStore } from "@reduxjs/toolkit";
 import { Provider } from "react-redux";
 import rootReducer from "./reducers/rootReducer";
 
-const store = configureStore(rootReducer);
+const store = configureStore({
+  reducer: rootReducer,
+});
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
