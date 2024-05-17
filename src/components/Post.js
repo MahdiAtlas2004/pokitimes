@@ -11,7 +11,7 @@ const Post = () => {
       .get("https://jsonplaceholder.typicode.com/posts/" + post_id)
       .then((res) => {
         setPost(res.data);
-        console.log(res);
+        // console.log(res);
       });
   }, [post_id]);
 
